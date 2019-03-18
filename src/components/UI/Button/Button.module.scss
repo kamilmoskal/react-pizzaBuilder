@@ -1,0 +1,19 @@
+.Button {
+    display: block;
+    border: none;
+    font: inherit;
+    padding:10px 15px;
+    cursor: pointer;
+    &:hover {
+        background-color: #dbdbdb;
+    }
+}
+
+.Primary {
+    color: white;
+    background-color: #359eff;
+
+    &:hover {
+        background-color: #2f7ec9;
+    }
+}

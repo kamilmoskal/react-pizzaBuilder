@@ -1,0 +1,42 @@
+.Auth {
+    width: 100%;
+    max-width: 500px;
+    margin:auto;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 30px 10px #e2f1ff;
+
+    &__title {
+        color: #359eff;
+    }
+    &__email, &__password{
+        display: block;
+        outline: none;
+        border:none;
+        border-bottom: 1px solid #ccc;
+        background-color: white;
+        font: inherit;
+        padding: 10px 15px 10px 0;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom:10px;
+
+        &:focus {
+            outline: none;
+            border-color: #359eff;
+        }
+    }
+    &__checkbox {
+        margin-bottom: 10px;
+    }
+    &__rememberMe{
+        font-size: 14px;
+        text-transform: uppercase;
+        color: rgb(150, 150, 150);
+    }
+    &__signIn{
+        display: block;
+    }
+
+}
