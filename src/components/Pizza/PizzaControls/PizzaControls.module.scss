@@ -1,0 +1,60 @@
+.PizzaControls{
+    width:100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding:20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 0px rgb(212, 212, 212);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    & > *{
+      margin:10px 0;
+    }
+}
+
+.select {
+    height:40px;
+    width:100%;
+    font: inherit;
+    cursor: pointer;
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: 1;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #359eff;
+    cursor: pointer; 
+    border:none;
+  }
+  &::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #359eff;
+    cursor: pointer; 
+    border:none;
+    transition: all .1s ease-out;
+
+    &:hover{
+      transform: scale(1.2)
+    }
+  }
+}
+

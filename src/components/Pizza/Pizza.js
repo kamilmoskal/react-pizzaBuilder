@@ -1,31 +1,22 @@
 import React from 'react';
 import classes from './Pizza.module.scss';
-import PizzaIngredient from '../PizzaIngredient/PizzaIngredient';
+import PizzaIngredient from './PizzaIngredient/PizzaIngredient';
 
-const Pizza = () => {
+const Pizza = ({ingredients}) => {
+  
+  let ingredientsArray = []
+  for(let key in ingredients){
+    for(let i=0; i<ingredients[key].amount; i++){
+      ingredientsArray.push({id: key + i, type: key})
+    }
+  }
+  let Ingredients = ingredientsArray.map(ing => {
+    return <PizzaIngredient key={ing.id} type={ing.type}/>
+  })
   return (
     <div className={classes.Pizza}>
       <PizzaIngredient />
-      <PizzaIngredient type='onion'/>
-      <PizzaIngredient type='onion'/>
-      <PizzaIngredient type='onion'/>
-      <PizzaIngredient type='onion'/>
-      <PizzaIngredient type='mushrooms'/>
-      <PizzaIngredient type='mushrooms'/>
-      <PizzaIngredient type='mushrooms'/>
-      <PizzaIngredient type='mushrooms'/>
-      <PizzaIngredient type='mushrooms'/>
-      <PizzaIngredient type='salami'/>
-      <PizzaIngredient type='salami'/>
-      <PizzaIngredient type='salami'/>
-      <PizzaIngredient type='salami'/>
-      <PizzaIngredient type='salami'/>
-      <PizzaIngredient type='olives'/>
-      <PizzaIngredient type='olives'/>
-      <PizzaIngredient type='olives'/>
-      <PizzaIngredient type='olives'/>
-      <PizzaIngredient type='olives'/>
-     
+      {Ingredients}
     </div>
   )
 }
