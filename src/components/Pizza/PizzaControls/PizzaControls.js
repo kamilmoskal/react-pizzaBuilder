@@ -36,7 +36,7 @@ const PizzaControls = (props) => {
           clicked={props.resetIng}>
           Reset
         </Button>
-        <p style={{margin: 'auto'}}>
+        <p style={{margin: 'auto 10px'}}>
           {props.ingredients[selectedValue].amount*2} grams
         </p>
         <Button 

@@ -1,0 +1,8 @@
+.MakingPizza {
+    @media(min-width: 1000px){
+        display: grid;
+        grid: 260px 440px auto / 300px 700px;
+        justify-content: center;
+        grid-gap:5px;
+    }
+}

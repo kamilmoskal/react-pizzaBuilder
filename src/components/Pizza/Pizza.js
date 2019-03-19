@@ -1,4 +1,5 @@
 import React from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import classes from './Pizza.module.scss';
 import PizzaIngredient from './PizzaIngredient/PizzaIngredient';
 
@@ -11,12 +12,27 @@ const Pizza = ({ingredients}) => {
     }
   }
   let Ingredients = ingredientsArray.map(ing => {
-    return <PizzaIngredient key={ing.id} type={ing.type}/>
+    return (
+      <CSSTransition 
+        key={ing.id}
+        classNames={{
+          enter: classes['fade-enter'],
+          enterActive: classes['fade-enter-active'],
+          exit: classes['fade-exit'],
+          exitActive: classes['fade-exit-active']
+        }}
+        timeout={300}
+      >
+        <PizzaIngredient type={ing.type}/>
+      </CSSTransition>
+    )
   })
   return (
     <div className={classes.Pizza}>
       <PizzaIngredient />
-      {Ingredients}
+      <TransitionGroup>
+        {Ingredients}
+      </TransitionGroup>
     </div>
   )
 }

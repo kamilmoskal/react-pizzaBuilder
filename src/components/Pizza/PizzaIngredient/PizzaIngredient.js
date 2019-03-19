@@ -27,7 +27,16 @@ const PizzaIngredient = ({type}) => {
             left: `${randomPositionLeft}%`,
             transform: `rotate(${radomRotation}deg)`,
             zIndex: `${radomZindex}`
-         }}
+        }}
+        loading={() => <span style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%,-50%)',
+            color: 'white',
+            zIndex: '20'
+        }}>Loading</span>}
+        wrapper="span"
         src={require(`../../../assets/svgs/${type}.svg`)} />
     }
   return ingredient
