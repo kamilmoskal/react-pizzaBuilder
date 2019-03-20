@@ -30,15 +30,15 @@ class MakingPizza extends Component {
     }
   }
   addIngredientHandler = (value, type) => {
-    this.setState({ 
-        ingredients: {
-          ...this.state.ingredients,
-          [type]: {
-            amount: value,
-            price: value * priceFor2gram[type]
-          }
-        },
-    });
+    this.setState(prevState => ({ 
+      ingredients: {
+        ...prevState.ingredients,
+        [type]: {
+          amount: value,
+          price: value * priceFor2gram[type]
+        }
+      },
+    }));
   }
   resetHandler = () => {
     const resetState = this.resetState();

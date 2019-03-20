@@ -8,6 +8,10 @@
     &:hover {
         background-color: #dbdbdb;
     }
+    &:disabled {
+        background-color: #dbdbdb;
+        pointer-events: none;
+    }
 }
 
 .Primary {
@@ -18,3 +22,14 @@
         background-color: #2f7ec9;
     }
 }
+
+.Danger {
+    color: white;
+    background-color: #ff5c5c;
+
+    &:hover {
+        background-color: #d64d4d;
+    }
+}
+
+
