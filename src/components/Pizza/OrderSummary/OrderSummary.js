@@ -1,9 +1,10 @@
 import React from 'react';
 import classes from './OrderSummary.module.scss';
 import Button from '../../UI/Button/Button';
+import { withRouter } from 'react-router-dom';
 
-const OrderSummary = ({ingredients}) => {
-
+const OrderSummary = (props) => {
+  const { ingredients } = props;
   const ingredientsArray = []
   for(let key in ingredients){
       ingredientsArray.push({type: key, amount: ingredients[key].amount, price: ingredients[key].price})
@@ -35,10 +36,10 @@ const OrderSummary = ({ingredients}) => {
       </div>
       <div>
         <p className={classes.price}>total price: <strong style={{fontSize: '20px'}}>{totalPrice.toFixed(2)}</strong></p>
-        <Button btnType="Primary">Log In to make a order</Button>
+        <Button btnType="Primary" clicked={() => props.history.push('/checkout')}>Log In to make a order</Button>
       </div>
     </div>
   )
 }
 
-export default OrderSummary;
+export default withRouter(OrderSummary);

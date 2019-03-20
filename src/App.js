@@ -11,9 +11,9 @@ class App extends Component {
       <BrowserRouter>
         <Layout>
           <Switch>
-           {/*  <Route path="/" exact component={MakingPizza} />
-            <Route path="/auth" component={Auth} /> */}
-            <Route path="/" component={Checkout} />
+            <Route path="/" exact component={MakingPizza} />
+            <Route path="/auth" component={Auth} />
+            <Route path="/checkout" component={Checkout} />
       
           </Switch>
         </Layout>
