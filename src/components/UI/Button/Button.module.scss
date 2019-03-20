@@ -8,6 +8,10 @@
     &:hover {
         background-color: #dbdbdb;
     }
+    &:disabled {
+        background-color: #dbdbdb;
+        pointer-events: none;
+    }
 }
 
 .Primary {

@@ -1,0 +1,24 @@
+.OrderForm {
+    width:100%;
+    max-width: 1000px;
+    margin:0 auto;
+    padding:20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 30px 10px #e2f1ff;
+    display: flex;
+    flex-direction: column;
+}
+
+.Field {
+    width: 100%;
+    max-width: 300px;
+    margin: 5px auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.ErrorMsg {
+    color: red;
+    font-size: 12px;
+    margin: auto;
+}
