@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import classes from './OrderForm.module.scss';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import Button from '../../components/UI/Button/Button';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
+import Button from '../../../components/UI/Button/Button';
 
 class OrderForm extends Component {
   render() {
@@ -18,12 +20,17 @@ class OrderForm extends Component {
           deliveryMethod: 'cheapest'
         }}
         onSubmit={(values, actions) => {
-          console.log(values)
-          console.log(actions)
-          {/*  setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }, 1000); */}
+          let totalPrice = this.props.startedPrice;
+          for(let key in this.props.ingredients){
+              totalPrice += this.props.ingredients[key].price
+          }
+
+          const orderData = {
+            ingredients: this.props.ingredients,
+            orderData: values,
+            totalPrice: totalPrice.toFixed(2)
+          }
+          this.props.onSubmitOrder(orderData)
         }}
         validate={(values) => {
           let errors = {}
@@ -133,5 +140,16 @@ class OrderForm extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    ingredients: state.mp.ingredients,
+    startedPrice: state.mp.startedPrice
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmitOrder: (order) => dispatch(actions.submitOrder(order))
+  }
+}
 
-export default OrderForm;
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);

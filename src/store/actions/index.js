@@ -3,4 +3,12 @@ export {
     changeIngredient,
     resetIngredients,
     randomPizza
-} from './makingPizza'
+} from './makingPizza';
+export {
+    submitOrder,
+    fetchOrders,
+    deleteOrder
+} from './order';
+export {
+    auth
+} from './auth';

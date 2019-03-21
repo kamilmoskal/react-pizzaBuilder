@@ -36,7 +36,9 @@ class MakingPizza extends Component {
             resetIng={this.props.onResetIngredients}
             randomPizza={this.props.onRandomPizza}/>
           <Pizza ingredients={this.props.ingredients}/>
-          <OrderSummary ingredients={this.props.ingredients}/>
+          <OrderSummary 
+            ingredients={this.props.ingredients}
+            startedPrice={this.props.startedPrice}/>
         </React.Fragment>
       )
     }
@@ -51,6 +53,7 @@ class MakingPizza extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.mp.ingredients,
+    startedPrice: state.mp.startedPrice,
     error: state.mp.error
   }
 }

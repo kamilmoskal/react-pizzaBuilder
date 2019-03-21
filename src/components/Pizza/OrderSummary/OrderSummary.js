@@ -12,10 +12,10 @@ const OrderSummary = (props) => {
   let mappedIng = ingredientsArray.filter(ing => ing.amount !== 0).map(ing => {
     return <p key={ing.type}
               className={classes.ingredient}>
-            <strong>{ing.type}:</strong> {ing.amount*4} g,<strong>${ing.price.toFixed(2)}</strong>
+            <strong>{ing.type}:</strong> {ing.amount} g,<strong>${ing.price.toFixed(2)}</strong>
           </p>
   })
-  let totalPrice = 14;
+  let totalPrice = props.startedPrice;
   ingredientsArray.forEach(ing => totalPrice += ing.price)
   if (mappedIng.length === 0){
     mappedIng = <p style={{textAlign: 'center'}}>ADD INGREDIENTS</p>

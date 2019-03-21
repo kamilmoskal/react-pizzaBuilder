@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import classes from './Auth.module.scss';
+import * as actions from '../../store/actions/index';
+
 import Button from '../../components/UI/Button/Button';
 import Checkbox from '../../components/UI/Checkbox/Checkbox';
 
@@ -81,4 +84,15 @@ class Auth extends Component {
   }
 }
 
-export default Auth
+const mapStateToProps = state => {
+  return {
+    
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    onAuth: (data) => dispatch(actions)
+  }
+}
+
+export default connect()(Auth);

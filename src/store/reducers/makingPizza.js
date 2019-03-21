@@ -1,24 +1,25 @@
 import * as actionType from '../actions/actionTypes';
 
-const priceFor4gram = {
-    onion: .26,
-    salami: .36,
-    mushrooms: .25,
-    olives: .34,
-    basil: .25,
-    pineapple: .32,
-    redPepper: .30,
-    greenPepper: .30
+const priceFor1gram = {
+    onion: .07,
+    salami: .1,
+    mushrooms: .08,
+    olives: .09,
+    basil: .09,
+    pineapple: .1,
+    redPepper: .07,
+    greenPepper: .07
 }
 
 const initState = {
     ingredients: null,
+    startedPrice: 14,
     error: null
 }
 
 const reducer = (state = initState, action) => {
     switch (action.type) {
-        case actionType.INIT_INGREDIENTS:
+        case actionType.INIT_INGREDIENTS_SUCCESS:
             return {
                 ...state,
                 ingredients: action.ingredients
@@ -35,7 +36,7 @@ const reducer = (state = initState, action) => {
                     ...state.ingredients,
                     [action.ingType]: {
                         amount: action.value,
-                        price: action.value * priceFor4gram[action.ingType]
+                        price: action.value * priceFor1gram[action.ingType]
                     }
                 }
             }
@@ -54,18 +55,18 @@ const reducer = (state = initState, action) => {
             for(let key in state.ingredients){
                 arrayOfIngTypes.push(key);
             }
-            const randomNumberOfIngredients = Math.floor(Math.random()*7) + 1;
+            const randomNumberOfIngredients = Math.floor(Math.random()*8) + 1;
             
             let newIngredients={}
             for(let i=0; i<randomNumberOfIngredients; i++){
-                let randomAmount = Math.floor(Math.random()*15) + 5;
+                let randomAmount = Math.floor(Math.random()*60) + 20;
                 let randomType = arrayOfIngTypes[Math.floor(Math.random()*arrayOfIngTypes.length)]
             
                 newIngredients = {
                     ...newIngredients,
                     [randomType]: {
                         amount: randomAmount,
-                        price: randomAmount * priceFor4gram[randomType]
+                        price: randomAmount * priceFor1gram[randomType]
                     }
                 }
                 arrayOfIngTypes = arrayOfIngTypes.filter(ing => ing !== randomType);

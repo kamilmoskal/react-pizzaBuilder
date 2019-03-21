@@ -5,7 +5,7 @@ export const initIngredients = () => {
     return (dispatch, getState) => {
         axios.get('/ingredients.json')
             .then(resp => {
-                dispatch({ type: actionTypes.INIT_INGREDIENTS, ingredients: resp.data})
+                dispatch({ type: actionTypes.INIT_INGREDIENTS_SUCCESS, ingredients: resp.data})
             })
             .catch(error => {
                 dispatch({ type: actionTypes.INIT_INGREDIENTS_ERROR, error })
