@@ -3,7 +3,7 @@ import ReactSVG from 'react-svg'
 
 const PizzaIngredient = ({type}) => {
     console.log('ing')
-    let randomSize = Math.floor(Math.random() * 10) + 5;
+    let randomSize = Math.floor(Math.random() * 10) + 10;
     let randomPositionTop = Math.floor(Math.random() * 55) + 15;
     let randomPositionLeft = Math.floor(Math.random() * 55) + 15;
     let radomRotation = Math.floor(Math.random() * 360);

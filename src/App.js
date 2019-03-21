@@ -14,7 +14,6 @@ class App extends Component {
             <Route path="/" exact component={MakingPizza} />
             <Route path="/auth" component={Auth} />
             <Route path="/checkout" component={Checkout} />
-      
           </Switch>
         </Layout>
       </BrowserRouter>

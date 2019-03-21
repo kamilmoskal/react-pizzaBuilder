@@ -27,7 +27,7 @@ const PizzaControls = (props) => {
         <input 
             type="range" 
             min="0" 
-            max="50" 
+            max="20" 
             value={props.ingredients[selectedValue].amount}
             className={classes.slider} 
             onChange={(e) => props.onChangeRange(e.target.value, selectedValue)}/>
