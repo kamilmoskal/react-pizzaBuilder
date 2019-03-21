@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import classes from './Checkout.module.scss';
 import Pizza from '../../components/Pizza/Pizza';
 import Button from '../../components/UI/Button/Button';
@@ -18,16 +19,22 @@ class Checkout extends Component {
     render() {
         return (
         <div className={classes.Checkout}>
-            <Pizza />
+            <Pizza ingredients={this.props.ingredients}/>
             <h1 className={classes.msg}>Do you want to continue order?</h1>
             <div className={classes.buttons}>
                 <Button btnType="Danger" clicked={this.cancelHandler}>NO</Button>
                 <Button btnType="Primary" clicked={this.continueHandler}>YES</Button>
             </div>
+            
             <Route path={this.props.match.url + '/order-form'} component={OrderForm} />
         </div>
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+      ingredients: state.mp.ingredients
+    }
+  }
 
-export default Checkout;
+export default connect(mapStateToProps)(Checkout);
