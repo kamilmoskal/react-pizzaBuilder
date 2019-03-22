@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactSVG from 'react-svg'
+import Spinner from '../../UI/Spinner/Spinner';
 
 const PizzaIngredient = ({type}) => {
     console.log('ing')
@@ -33,9 +34,8 @@ const PizzaIngredient = ({type}) => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%,-50%)',
-            color: 'white',
             zIndex: '20'
-        }}>Loading</span>}
+        }}><Spinner/></span>}
         wrapper="span"
         src={require(`../../../assets/svgs/${type}.svg`)} />
     }

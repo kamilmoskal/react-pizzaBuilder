@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 import Pizza from '../../components/Pizza/Pizza';
 import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary';
 import PizzaControls from '../../components/Pizza/PizzaControls/PizzaControls';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class MakingPizza extends Component {
   /* state = {
@@ -25,7 +26,7 @@ class MakingPizza extends Component {
   }
   render() {
     let pizza = this.props.error ? 
-    <p>Something went wrong: {this.props.error.message}</p> : <p>Loading...</p>;
+    <p>Something went wrong: {this.props.error.message}</p> : <Spinner />;
     
     if (this.props.ingredients){
       pizza = (
