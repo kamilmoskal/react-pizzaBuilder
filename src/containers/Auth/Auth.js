@@ -6,18 +6,22 @@ import * as actions from '../../store/actions/index';
 
 import Button from '../../components/UI/Button/Button';
 import Checkbox from '../../components/UI/Checkbox/Checkbox';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Auth extends Component {
   state = {
-    currentSubmit: 'signIn'
+    signIn: true
   }
   signInHandle = () => {
-    this.setState({ currentSubmit: 'signIn' })
+    this.setState({  signIn: true })
   }
   signUpHandle = () => {
-    this.setState({ currentSubmit: 'signUp' })
+    this.setState({  signIn: false })
   }
   render() {
+    if (this.props.loading){
+      return <Spinner />
+    }
     return (
       <Formik
         initialValues={{ 
@@ -26,6 +30,12 @@ class Auth extends Component {
           remember: true
         }}
         onSubmit={(values, actions) => {
+            this.props.onAuth(
+              values.email, 
+              values.password, 
+              this.state.signIn, 
+              values.remember
+            )
 
             console.log(values)
             console.log(actions)
@@ -55,6 +65,7 @@ class Auth extends Component {
         }) => (
           <Form onSubmit={handleSubmit} className={classes.Auth}>
             <h1 className={classes.Auth__title}>Log In</h1>
+            {this.props.error ? <p className={classes.ErrorMsg}>authenticate error: {this.props.error.message.replace(/_/g, " ")}</p> : null}
             <Field 
                 className={classes.Auth__email} 
                 type="email"
@@ -86,13 +97,14 @@ class Auth extends Component {
 
 const mapStateToProps = state => {
   return {
-    
+    loading: state.auth.loading,
+    error: state.auth.error
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (data) => dispatch(actions)
+    onAuth: (email,password,signIn,remember) => dispatch(actions.auth(email,password,signIn,remember))
   }
 }
 
-export default connect()(Auth);
+export default connect(mapStateToProps,mapDispatchToProps)(Auth);
