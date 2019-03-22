@@ -10,6 +10,9 @@ class Orders extends Component {
         this.props.onFetchOrders()
     }
     render() {
+        if (this.props.loading){
+            return <Spinner />
+        } 
         let orders = this.props.orders.length ? this.props.orders.map(order => {
             return (
                 <Order 
@@ -20,13 +23,10 @@ class Orders extends Component {
             )
         }) : <h3 style={{textAlign: 'center'}}>No active orders</h3>
 
-        if (this.props.loading){
-            orders = <Spinner />
-        } 
         return (
-        <div className={classes.Orders}>
-            {orders}
-        </div>
+            <div className={classes.Orders}>
+                {orders}
+            </div>
         )
     }
 }
