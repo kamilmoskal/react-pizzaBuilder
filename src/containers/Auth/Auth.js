@@ -72,6 +72,7 @@ class Auth extends Component {
         }) => (
           <Form onSubmit={handleSubmit} className={classes.Auth}>
             <h1 className={classes.Auth__title}>Log In</h1>
+            <p className={classes.login}>email:admin@admin.pl password:admin1234</p>
             {this.props.error ? <p className={classes.ErrorMsg}>authenticate error: {this.props.error.message.replace(/_/g, " ")}</p> : null}
             <Field 
                 className={classes.Auth__email} 
