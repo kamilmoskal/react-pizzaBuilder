@@ -10,7 +10,7 @@ const SideDrawer = (props) => {
     }
     return (
         <div className={attachedClasses.join(' ')}>
-            <div style={{marginBottom: "40px"}}>
+            <div style={{marginBottom: "40px"}} onClick={props.closed}>
                 <Logo />
             </div>
             <nav onClick={props.closed}>

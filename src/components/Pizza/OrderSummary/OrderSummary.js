@@ -36,7 +36,20 @@ const OrderSummary = (props) => {
       </div>
       <div>
         <p className={classes.price}>total price: <strong style={{fontSize: '20px'}}>{totalPrice.toFixed(2)}</strong></p>
-        <Button btnType="Primary" clicked={() => props.history.push('/checkout')}>Log In to make a order</Button>
+
+        {props.isAuth ? 
+          <Button 
+            btnType="Primary" 
+            clicked={() => props.history.push('/checkout')}
+            disabled={false}>
+            Make a order
+          </Button>
+        : <Button 
+            btnType="Primary" 
+            clicked={() => props.history.push('/auth')}
+            disabled={false}>
+            Log In to make a order
+          </Button>}
       </div>
     </div>
   )
