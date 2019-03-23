@@ -25,7 +25,11 @@ class Orders extends Component {
 
         return (
             <div className={classes.Orders}>
-                {orders}
+
+                {this.props.isAuth ? 
+                orders 
+                : <h3 style={{textAlign: 'center'}}>Log in to view orders</h3>}
+                
             </div>
         )
     }
@@ -34,7 +38,8 @@ class Orders extends Component {
 const mapStateToProps = state => {
     return {
       orders: state.order.orders,
-      loading: state.order.loading
+      loading: state.order.loading,
+      isAuth: state.auth.token !== null
     }
   }
   const mapDispatchToProps = dispatch => {
