@@ -4,10 +4,10 @@ import classes from './Pizza.module.scss';
 import PizzaIngredient from './PizzaIngredient/PizzaIngredient';
 
 const Pizza = ({ingredients}) => {
-  
+  console.log(ingredients)
   let ingredientsArray = []
   for(let key in ingredients){
-    for(let i=0; i<ingredients[key].amount; i++){
+    for(let i=0; i < Math.floor(ingredients[key].amount / 5); i++){
       ingredientsArray.push({id: key + i, type: key})
     }
   }

@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import classes from './MakingPizza.module.scss';
+import * as actions from '../../store/actions/index';
 
 import Pizza from '../../components/Pizza/Pizza';
 import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary';
 import PizzaControls from '../../components/Pizza/PizzaControls/PizzaControls';
-
-const priceFor2gram = {
-  onion: .10,
-  salami: .12,
-  mushrooms: .08,
-  olives: .15,
-  basil: .15,
-  pineapple: .08,
-  redPepper: .10,
-  greenPepper: .10
-}
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class MakingPizza extends Component {
-  state = {
+  /* state = {
     ingredients: {
       onion: {amount: 0, price: 0},
       salami: {amount: 0, price: 0},
@@ -28,68 +20,51 @@ class MakingPizza extends Component {
       redPepper: {amount: 0, price: 0},
       greenPepper: {amount: 0, price: 0},
     }
-  }
-  addIngredientHandler = (value, type) => {
-    this.setState(prevState => ({ 
-      ingredients: {
-        ...prevState.ingredients,
-        [type]: {
-          amount: value,
-          price: value * priceFor2gram[type]
-        }
-      },
-    }));
-  }
-  resetHandler = () => {
-    const resetState = this.resetState();
-    this.setState({ ingredients: { ...resetState } })
-  }
-  resetState = () => {
-    const resetState = {}
-    for(let key in this.state.ingredients){
-      resetState[key] = { amount: 0, price: 0 }
-    }
-    return resetState;
-  }
-  makeRandomPizzaHandler = () => {
-    let ingredients = ['onion','salami','mushrooms','olives','basil','pineapple','redPepper','greenPepper'];
-    const numberOfIngredients = Math.floor(Math.random()*7) + 1;
-    let newIngredients={}
-
-    for(let i=0; i<numberOfIngredients; i++){
-      let randomAmount = Math.floor(Math.random()*20) + 5;
-      let randomType = ingredients[Math.floor(Math.random()*ingredients.length)]
-
-      newIngredients.ingredients = {
-        ...newIngredients.ingredients,
-        [randomType]: {
-        amount: randomAmount,
-        price: randomAmount * priceFor2gram[randomType]
-      }}
-      ingredients = ingredients.filter(ing => ing !== randomType);
-    }
-    console.log(numberOfIngredients)
-    const resetState = this.resetState();
-    this.setState({
-      ingredients: {
-        ...resetState,
-        ...newIngredients.ingredients
-      }
-    })
+  } */
+  componentDidMount() {
+    this.props.onInitIngredients();
   }
   render() {
+    let pizza = this.props.error ? 
+    <p>Something went wrong: {this.props.error.message}</p> : <Spinner />;
+    
+    if (this.props.ingredients){
+      pizza = (
+        <React.Fragment>
+          <PizzaControls 
+            onChangeRange={this.props.onChangeIngredient}
+            ingredients={this.props.ingredients}
+            resetIng={this.props.onResetIngredients}
+            randomPizza={this.props.onRandomPizza}/>
+          <Pizza ingredients={this.props.ingredients}/>
+          <OrderSummary 
+            ingredients={this.props.ingredients}
+            startedPrice={this.props.startedPrice}/>
+        </React.Fragment>
+      )
+    }
     return (
       <div className={classes.MakingPizza}>
-        <PizzaControls 
-          onChangeRange={this.addIngredientHandler}
-          ingredients={this.state.ingredients}
-          resetIng={this.resetHandler}
-          randomPizza={this.makeRandomPizzaHandler}/>
-        <Pizza ingredients={this.state.ingredients}/>
-        <OrderSummary ingredients={this.state.ingredients}/>
+        {pizza}
       </div>
     )
   }
 }
 
-export default MakingPizza;
+const mapStateToProps = state => {
+  return {
+    ingredients: state.mp.ingredients,
+    startedPrice: state.mp.startedPrice,
+    error: state.mp.error
+  }
+}
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitIngredients: () => dispatch(actions.initIngredients()),
+    onChangeIngredient: (value, type) => dispatch(actions.changeIngredient(value, type)),
+    onResetIngredients: () => dispatch(actions.resetIngredients()),
+    onRandomPizza: () => dispatch(actions.randomPizza())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(MakingPizza);

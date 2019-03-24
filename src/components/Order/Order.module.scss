@@ -1,0 +1,18 @@
+.Order {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 2px solid red;
+}
+.title {
+    margin: 5px 0;
+    width: 100%;
+}
+.ingLabel {
+    margin: 2px;
+    background-color: #359eff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+}

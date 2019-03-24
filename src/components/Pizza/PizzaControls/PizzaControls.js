@@ -26,8 +26,8 @@ const PizzaControls = (props) => {
         </select> 
         <input 
             type="range" 
-            min="0" 
-            max="50" 
+            min="0"
+            max="100" 
             value={props.ingredients[selectedValue].amount}
             className={classes.slider} 
             onChange={(e) => props.onChangeRange(e.target.value, selectedValue)}/>
@@ -37,7 +37,7 @@ const PizzaControls = (props) => {
           Reset
         </Button>
         <p style={{margin: 'auto 10px'}}>
-          {props.ingredients[selectedValue].amount*2} grams
+          {props.ingredients[selectedValue].amount} grams
         </p>
         <Button 
           btnType="Primary" 
