@@ -1,19 +1,20 @@
 import axios from '../../axios-db';
 import * as actionTypes from './actionTypes'
 
-export const submitOrder = (order) => {
+export const submitOrder = (token, order) => {
     return dispatch => {
         dispatch({ type: actionTypes.SUBMIT_ORDER_START })
-        axios.post('/orders.json', order)
+        axios.post('/orders.json?auth=' + token, order)
             .then(resp => dispatch({ type: actionTypes.SUBMIT_ORDER_SUCCESS }))
             .catch(error => dispatch({ type: actionTypes.SUBMIT_ORDER_ERROR, error}))
     }
 }
 
-export const fetchOrders = () => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
         dispatch({ type: actionTypes.FETCH_ORDERS_START })
-        axios.get('/orders.json')
+
+        axios.get('/orders.json' + '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"')
             .then(resp => {
                 const orders = []
                 for(let key in resp.data){
@@ -28,14 +29,14 @@ export const fetchOrders = () => {
     }
 }
 
-export const deleteOrder = (id) => {
+export const deleteOrder = (token, id, userId) => {
     return dispatch => {
         dispatch({ type: actionTypes.FETCH_ORDERS_START })
-        axios.delete('/orders/' + id + '.json')
+        axios.delete('/orders/' + id + '.json?auth=' + token)
             .then(resp => {
                 dispatch({ type: actionTypes.DELETE_ORDERS_SUCCESS })
-                dispatch(fetchOrders())
+                dispatch(fetchOrders(token, userId))
             })
-            .catch(error => dispatch({ type: actionTypes.DELETE_ORDERS_ERROR }))
+            .catch(error => dispatch({ type: actionTypes.DELETE_ORDERS_ERROR, error }))
     }
 }

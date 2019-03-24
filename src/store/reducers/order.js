@@ -44,6 +44,12 @@ const reducer = (state = initState, action) => {
                 loading: false,
                 error: action.error
             }
+        case actionType.DELETE_ORDERS_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
         default:
             return state
     }
