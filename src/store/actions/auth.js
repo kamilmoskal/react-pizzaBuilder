@@ -20,9 +20,9 @@ export const auth = (email,password,signIn,remember) => {
 
                 if (remember) {
                     const expirationDate = new Date(new Date().getTime() + (resp.data.expiresIn * 1000));
-                    localStorage.setItem('token', resp.data.idToken);
-                    localStorage.setItem('userId', resp.data.localId);
-                    localStorage.setItem('expirationDate', expirationDate);
+                    sessionStorage.setItem('token', resp.data.idToken);
+                    sessionStorage.setItem('userId', resp.data.localId);
+                    sessionStorage.setItem('expirationDate', expirationDate);
                 }
                 dispatch({ type: actionTypes.AUTH_SUCCESS, token: resp.data.idToken, userId: resp.data.localId  })
                 dispatch(checkAuthTimeout(resp.data.expiresIn));
@@ -34,10 +34,10 @@ export const auth = (email,password,signIn,remember) => {
 }
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('expirationDate');
-
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('expirationDate');
+    
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -53,11 +53,11 @@ export const checkAuthTimeout = (expirationTime) => {
 
 export const checkAuthentication = () => {
     return dispatch => {
-        const token = localStorage.getItem("token");   
+        const token = sessionStorage.getItem("token");   
 
         if (token){
-            const userId = localStorage.getItem("userId"); 
-            const expirationDate = new Date(localStorage.getItem("expirationDate"));
+            const userId = sessionStorage.getItem("userId"); 
+            const expirationDate = new Date(sessionStorage.getItem("expirationDate"));
 
             if (new Date() < expirationDate ){
                 dispatch({ type: actionTypes.AUTH_SUCCESS, token, userId  })

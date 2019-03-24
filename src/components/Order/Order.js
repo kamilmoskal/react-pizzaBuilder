@@ -20,7 +20,7 @@ const Order = ({order, deleteOrder}) => {
             return <p key={i} className={classes.ingLabel}>{ing.type} : {ing.amount} g</p>
           })}
       </div>
-      <Button btnType="Danger" clicked={() => deleteOrder(order.id)}>Cancel Order</Button>
+      <Button btnType="Danger" clicked={deleteOrder}>Cancel Order</Button>
     </React.Fragment>
   )
 }

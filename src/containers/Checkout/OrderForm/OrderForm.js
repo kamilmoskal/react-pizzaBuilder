@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import classes from './OrderForm.module.scss';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import * as actions from '../../../store/actions/index';
 import Button from '../../../components/UI/Button/Button';
 
 class OrderForm extends Component {
   render() {
-    if (this.props.loading) {
-      
-     /*  return <Redirect to="/orders" /> */
-    }
     return (
       <Formik
         className={classes.OrderForm}
@@ -33,9 +28,10 @@ class OrderForm extends Component {
           const orderData = {
             ingredients: this.props.ingredients,
             orderData: values,
+            userId: this.props.userId,
             totalPrice: totalPrice.toFixed(2)
           }
-          this.props.onSubmitOrder(orderData)
+          this.props.onSubmitOrder(this.props.token, orderData)
         }}
         validate={(values) => {
           let errors = {}
@@ -148,12 +144,14 @@ class OrderForm extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.mp.ingredients,
-    startedPrice: state.mp.startedPrice
+    startedPrice: state.mp.startedPrice,
+    token: state.auth.token,
+    userId: state.auth.userId
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmitOrder: (order) => dispatch(actions.submitOrder(order))
+    onSubmitOrder: (token, order) => dispatch(actions.submitOrder(token, order))
   }
 }
 

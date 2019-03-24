@@ -7,7 +7,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Orders extends Component {
     componentDidMount(){
-        this.props.onFetchOrders()
+        this.props.onFetchOrders(this.props.token, this.props.userId);
     }
     render() {
         if (this.props.loading){
@@ -18,7 +18,7 @@ class Orders extends Component {
                 <Order 
                     key={order.id} 
                     order={order}
-                    deleteOrder={this.props.onDeleteOrder}
+                    deleteOrder={() => this.props.onDeleteOrder(this.props.token, order.id, this.props.userId)}
                     />
             )
         }) : <h3 style={{textAlign: 'center'}}>No active orders</h3>
@@ -39,13 +39,15 @@ const mapStateToProps = state => {
     return {
       orders: state.order.orders,
       loading: state.order.loading,
-      isAuth: state.auth.token !== null
+      isAuth: state.auth.token !== null,
+      token: state.auth.token,
+      userId: state.auth.userId
     }
   }
   const mapDispatchToProps = dispatch => {
     return {
-        onFetchOrders: () => dispatch(actions.fetchOrders()),
-        onDeleteOrder: (id) => dispatch(actions.deleteOrder(id)),
+        onFetchOrders: (token, userId) => dispatch(actions.fetchOrders(token, userId)),
+        onDeleteOrder: (token, id, userId) => dispatch(actions.deleteOrder(token, id, userId)),
     }
   }
 
