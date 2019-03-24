@@ -4,6 +4,8 @@ import classes from './Orders.module.scss';
 import * as actions from '../../store/actions/index';
 import Order from '../../components/Order/Order';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../axios-db';
 
 class Orders extends Component {
     componentDidMount(){
@@ -51,4 +53,4 @@ const mapStateToProps = state => {
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders);
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios));
