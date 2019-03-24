@@ -14,6 +14,7 @@ const priceFor1gram = {
 const initState = {
     ingredients: null,
     startedPrice: 14,
+    ingSelected: false,
     error: null
 }
 
@@ -38,7 +39,8 @@ const reducer = (state = initState, action) => {
                         amount: action.value,
                         price: action.value * priceFor1gram[action.ingType]
                     }
-                }
+                },
+                ingSelected: true
             }
         case actionType.RESET_INGREDIENTS:
             const resetIngredients = {}
@@ -47,7 +49,8 @@ const reducer = (state = initState, action) => {
             }
             return {
                 ...state,
-                ingredients: resetIngredients
+                ingredients: resetIngredients,
+                ingSelected: false
             }
         case actionType.RANDOM_PIZZA:
 
@@ -77,7 +80,8 @@ const reducer = (state = initState, action) => {
                 ingredients: {
                     ...state.ingredients,
                     ...newIngredients
-                  }
+                },
+                ingSelected: true
             }
         default:
             return state;

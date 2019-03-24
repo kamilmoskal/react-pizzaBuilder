@@ -3,7 +3,8 @@ import * as actionType from '../actions/actionTypes';
 const initState = {
     orders: [],
     loading: false,
-    error: null
+    error: null,
+    ordered: false
 }
 
 const reducer = (state = initState, action) => {
@@ -16,7 +17,8 @@ const reducer = (state = initState, action) => {
         case actionType.SUBMIT_ORDER_SUCCESS:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                ordered: true
             }
         case actionType.SUBMIT_ORDER_ERROR:
             return {
@@ -27,13 +29,14 @@ const reducer = (state = initState, action) => {
         case actionType.FETCH_ORDERS_START:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                ordered: false
             }
         case actionType.FETCH_ORDERS_SUCCESS:
             return {
                 ...state,
                 orders: action.orders,
-                loading: false
+                loading: false,
             }
         case actionType.FETCH_ORDERS_ERROR:
             return {

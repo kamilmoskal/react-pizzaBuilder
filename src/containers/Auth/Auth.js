@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import classes from './Auth.module.scss';
 import * as actions from '../../store/actions/index';
@@ -19,6 +20,12 @@ class Auth extends Component {
     this.setState({  signIn: false })
   }
   render() {
+    if (this.props.ingSelected && this.props.isAuth){
+      return <Redirect to="/checkout" />
+    }
+    if (this.props.isAuth){
+      return <Redirect to="/" />
+    }
     if (this.props.loading){
       return <Spinner />
     }
@@ -98,7 +105,9 @@ class Auth extends Component {
 const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    error: state.auth.error,
+    isAuth: state.auth.token !== null,
+    ingSelected: state.mp.ingSelected
   }
 }
 const mapDispatchToProps = dispatch => {

@@ -39,7 +39,8 @@ class MakingPizza extends Component {
           <Pizza ingredients={this.props.ingredients}/>
           <OrderSummary 
             ingredients={this.props.ingredients}
-            startedPrice={this.props.startedPrice}/>
+            startedPrice={this.props.startedPrice}
+            isAuth={this.props.isAuth}/>
         </React.Fragment>
       )
     }
@@ -55,7 +56,8 @@ const mapStateToProps = state => {
   return {
     ingredients: state.mp.ingredients,
     startedPrice: state.mp.startedPrice,
-    error: state.mp.error
+    error: state.mp.error,
+    isAuth: state.auth.token !== null
   }
 }
 const mapDispatchToProps = dispatch => {

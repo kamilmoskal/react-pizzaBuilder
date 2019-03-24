@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import classes from './Checkout.module.scss';
 import Pizza from '../../components/Pizza/Pizza';
 import OrderForm from './OrderForm/OrderForm';
 import OrderCheck from '../../components/OrderCheck/OrderCheck';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Checkout extends Component {
     state = {
@@ -23,6 +25,15 @@ class Checkout extends Component {
         this.props.history.push('/');
     }
     render() {
+        if (!this.props.isAuth){
+            return <Redirect to="/" />
+        }
+        if (this.props.ordered){
+            return <Redirect to="/orders" />
+        }
+        if (this.props.loading){
+            return <Spinner />
+        }
         return (
             <div className={classes.Checkout}>
                 <Pizza ingredients={this.props.ingredients}/>
@@ -40,7 +51,10 @@ class Checkout extends Component {
 }
 const mapStateToProps = state => {
     return {
-      ingredients: state.mp.ingredients
+      ingredients: state.mp.ingredients,
+      loading: state.order.loading,
+      ordered: state.order.ordered,
+      isAuth: state.auth.token !== null
     }
 }
 

@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import classes from './OrderForm.module.scss';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../../store/actions/index';
 import Button from '../../../components/UI/Button/Button';
 
 class OrderForm extends Component {
   render() {
+    if (this.props.loading) {
+      
+     /*  return <Redirect to="/orders" /> */
+    }
     return (
       <Formik
         className={classes.OrderForm}
