@@ -1,3 +1,33 @@
 .Checkout {
   
 }
+
+.CheckOpen {
+     animation: openCheck 0.4s ease-out forwards;
+}
+
+.CheckClosed {
+    animation: closeCheck 1s ease-out forwards;
+}
+ 
+@keyframes openCheck {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+ 
+@keyframes closeCheck {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}

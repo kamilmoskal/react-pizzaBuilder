@@ -18,6 +18,7 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
+                error: null,
                 ordered: true
             }
         case actionType.SUBMIT_ORDER_ERROR:
@@ -36,13 +37,23 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 orders: action.orders,
+                ordered: false,
                 loading: false,
+                error: null
             }
         case actionType.FETCH_ORDERS_ERROR:
             return {
                 ...state,
+                ordered: false,
                 loading: false,
                 error: action.error
+            }
+        case actionType.DELETE_ORDERS_SUCCESS:
+            return {
+                ...state,
+                orders: state.orders.filter(order => order.id !== action.id),
+                loading: false,
+                error: null
             }
         case actionType.DELETE_ORDERS_ERROR:
             return {
