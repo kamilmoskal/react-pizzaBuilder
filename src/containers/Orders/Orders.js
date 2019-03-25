@@ -4,10 +4,14 @@ import classes from './Orders.module.scss';
 import * as actions from '../../store/actions/index';
 import Order from '../../components/Order/Order';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../axios-db';
 
 class Orders extends Component {
     componentDidMount(){
-        this.props.onFetchOrders(this.props.token, this.props.userId);
+        if (this.props.isAuth) {
+            this.props.onFetchOrders(this.props.token, this.props.userId);
+        }
     }
     render() {
         if (this.props.loading){
@@ -51,4 +55,4 @@ const mapStateToProps = state => {
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders);
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios));

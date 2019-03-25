@@ -24,13 +24,13 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.error
+                error: action.error,
+                ordered: false
             }
         case actionType.FETCH_ORDERS_START:
             return {
                 ...state,
-                loading: true,
-                ordered: false
+                loading: true
             }
         case actionType.FETCH_ORDERS_SUCCESS:
             return {

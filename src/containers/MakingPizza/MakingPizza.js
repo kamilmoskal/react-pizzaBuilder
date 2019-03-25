@@ -7,6 +7,8 @@ import Pizza from '../../components/Pizza/Pizza';
 import OrderSummary from '../../components/Pizza/OrderSummary/OrderSummary';
 import PizzaControls from '../../components/Pizza/PizzaControls/PizzaControls';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import axios from '../../axios-db';
 
 class MakingPizza extends Component {
   /* state = {
@@ -69,4 +71,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(MakingPizza);
+export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(MakingPizza, axios));

@@ -61,7 +61,7 @@ class OrderForm extends Component {
           if(!values.phone){
             errors.phone = "Required"
           }
-
+          
           return errors
         }}
         render={({
@@ -132,7 +132,8 @@ class OrderForm extends Component {
             
             <Button 
               btnType="Primary"
-              disabled={isSubmitting}>
+              //disabled={isSubmitting}
+              >
               Submit
             </Button>
           </Form>

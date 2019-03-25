@@ -5,4 +5,4 @@ const Spinner = () => {
   return <div className={classes.Spinner}></div>
 }
 
-export default Spinner
+export default Spinner;

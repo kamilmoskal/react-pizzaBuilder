@@ -1,0 +1,17 @@
+.Modal {
+    background-color: rgb(179, 179, 179);
+    padding: 10px 15px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1000px;
+    margin: 10px auto;
+    text-align: center;
+    color: white;
+}
+
+.Success {
+    background-color: #359eff;
+}
+.Error {
+    background-color: #ff5c5c;
+}

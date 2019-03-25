@@ -3,7 +3,7 @@ import ReactSVG from 'react-svg'
 import Spinner from '../../UI/Spinner/Spinner';
 
 const PizzaIngredient = ({type}) => {
-    console.log('ing')
+    console.log('PizzaIngredient')
     let randomSize = Math.floor(Math.random() * 10) + 10;
     let randomPositionTop = Math.floor(Math.random() * 55) + 15;
     let randomPositionLeft = Math.floor(Math.random() * 55) + 15;

@@ -3,7 +3,6 @@ import classes from './Order.module.scss';
 import Button from '../UI/Button/Button';
 
 const Order = ({order, deleteOrder}) => {
-    console.log(order)
     let arrayOfIng = []
     for (let key in order.ingredients){
       arrayOfIng.push({
