@@ -22,8 +22,8 @@ class Orders extends Component {
                 <Order 
                     key={order.id} 
                     order={order}
-                    deleteOrder={() => this.props.onDeleteOrder(this.props.token, order.id, this.props.userId)}
-                    />
+                    deleteOrder={() => this.props.onDeleteOrder(this.props.token, order.id)}
+                />
             )
         }) : <h3 style={{textAlign: 'center'}}>No active orders</h3>
 
@@ -51,7 +51,7 @@ const mapStateToProps = state => {
   const mapDispatchToProps = dispatch => {
     return {
         onFetchOrders: (token, userId) => dispatch(actions.fetchOrders(token, userId)),
-        onDeleteOrder: (token, id, userId) => dispatch(actions.deleteOrder(token, id, userId)),
+        onDeleteOrder: (token, id) => dispatch(actions.deleteOrder(token, id)),
     }
   }
 

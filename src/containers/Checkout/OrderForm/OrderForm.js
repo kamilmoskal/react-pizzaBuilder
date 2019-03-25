@@ -37,21 +37,21 @@ class OrderForm extends Component {
           let errors = {}
 
           if(!values.name){
-            errors.name = "Required"
+            errors.name = "Name is required"
           } else if (values.name.length < 3) {
             errors.name = 'Minimum 3 characters'
           }
 
           if(!values.street){
-            errors.street = "Required"
+            errors.street = "Street is required"
           }
 
           if(!values.zipCode){
-            errors.zipCode = "Required"
+            errors.zipCode = "Zipcode is required"
           }
 
           if(!values.country){
-            errors.country = "Required"
+            errors.country = "Country is required"
           }
 
           if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -59,7 +59,11 @@ class OrderForm extends Component {
           }
 
           if(!values.phone){
-            errors.phone = "Required"
+            errors.phone = "Phone is required"
+          } else if ( isNaN(values.phone) ) {
+            errors.phone = 'Phone must be write in digits'
+          } else if (values.phone.length < 7) {
+            errors.phone = 'Minimum 7 digits'
           }
           
           return errors
@@ -116,7 +120,7 @@ class OrderForm extends Component {
             <ErrorMessage name="email" component="div" className={classes.ErrorMsg}/>
             <Field
               className={classes.Field}
-              type="number"
+              type="text"
               name="phone"
               placeholder="phone*"
             />

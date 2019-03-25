@@ -31,14 +31,14 @@ const PizzaControls = (props) => {
             value={props.ingredients[selectedValue].amount}
             className={classes.slider} 
             onChange={(e) => props.onChangeRange(e.target.value, selectedValue)}/>
+        <p className={classes.gramValue}>
+          {props.ingredients[selectedValue].amount} grams
+        </p>
         <Button 
           btnType="Primary" 
           clicked={props.resetIng}>
           Reset
         </Button>
-        <p style={{margin: 'auto 10px'}}>
-          {props.ingredients[selectedValue].amount} grams
-        </p>
         <Button 
           btnType="Primary" 
           clicked={props.randomPizza}>

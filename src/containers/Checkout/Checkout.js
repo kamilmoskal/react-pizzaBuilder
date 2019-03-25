@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import classes from './Checkout.module.scss';
 import Pizza from '../../components/Pizza/Pizza';
 import OrderForm from './OrderForm/OrderForm';
@@ -37,12 +38,23 @@ class Checkout extends Component {
         return (
             <div className={classes.Checkout}>
                 <Pizza ingredients={this.props.ingredients}/>
-                {this.state.showOrderCheck ? 
-                <OrderCheck 
-                    ingredients={this.props.ingredients}
-                    continue={this.continueHandler}
-                    cancel={this.cancelHandler}/>
-                : null}
+
+                <CSSTransition 
+                    in={this.state.showOrderCheck} 
+                    timeout={{ enter: 400, exit: 1000 }}
+                    mountOnEnter
+                    unmountOnExit
+                    classNames={{
+                            enter: '',
+                            enterActive: classes['CheckOpen'],
+                            exit: '',
+                            exitActive: classes['CheckClosed']
+                    }}>
+                    <OrderCheck 
+                        ingredients={this.props.ingredients}
+                        continue={this.continueHandler}
+                        cancel={this.cancelHandler}/>
+                </CSSTransition>
                 
                 <Route path={this.props.match.url + '/order-form'} component={OrderForm} />
             </div>

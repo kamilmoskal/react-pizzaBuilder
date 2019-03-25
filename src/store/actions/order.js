@@ -29,13 +29,11 @@ export const fetchOrders = (token, userId) => {
     }
 }
 
-export const deleteOrder = (token, id, userId) => {
+export const deleteOrder = (token, id) => {
     return dispatch => {
-        dispatch({ type: actionTypes.FETCH_ORDERS_START })
         axios.delete('/orders/' + id + '.json?auth=' + token)
             .then(resp => {
-                dispatch({ type: actionTypes.DELETE_ORDERS_SUCCESS })
-                dispatch(fetchOrders(token, userId))
+                dispatch({ type: actionTypes.DELETE_ORDERS_SUCCESS, id })
             })
             .catch(error => dispatch({ type: actionTypes.DELETE_ORDERS_ERROR, error }))
     }
