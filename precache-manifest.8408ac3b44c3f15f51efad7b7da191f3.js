@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/react-pizzaBuilder/static/js/main.7c956ff7.chunk.js"
   },
   {
-    "revision": "705e4c07ffe9274fd813",
-    "url": "/react-pizzaBuilder/static/js/runtime~main.91d397c0.js"
+    "revision": "a1c799aea91774b74228",
+    "url": "/react-pizzaBuilder/static/js/runtime~main.a78379ed.js"
   },
   {
     "revision": "56445df915d0a8c54237",
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/react-pizzaBuilder/static/media/redPepper.04faaea7.svg"
   },
   {
-    "revision": "38ed1b2436380ab543c5",
-    "url": "/react-pizzaBuilder/static/js/5.b76a315b.chunk.js"
+    "revision": "a2b2c33c276871740915",
+    "url": "/react-pizzaBuilder/static/js/5.0627a4a9.chunk.js"
   },
   {
     "revision": "0d1687bc446961892f59319a7fd8f3fa",
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/react-pizzaBuilder/static/media/onion.df14f2c7.svg"
   },
   {
-    "revision": "7693cbbf96cbdf7741ea",
-    "url": "/react-pizzaBuilder/static/js/7.000f575a.chunk.js"
+    "revision": "a9160355bf5dc30adedd",
+    "url": "/react-pizzaBuilder/static/js/7.b57c02cb.chunk.js"
   },
   {
     "revision": "466ae5e9c84fee0e403facff7930284a",
@@ -88,7 +88,7 @@ self.__precacheManifest = [
     "url": "/react-pizzaBuilder/static/css/8.cd8dcb02.chunk.css"
   },
   {
-    "revision": "7693cbbf96cbdf7741ea",
+    "revision": "a9160355bf5dc30adedd",
     "url": "/react-pizzaBuilder/static/css/7.0ab40ff6.chunk.css"
   },
   {
@@ -96,11 +96,11 @@ self.__precacheManifest = [
     "url": "/react-pizzaBuilder/static/css/6.f9b5c628.chunk.css"
   },
   {
-    "revision": "38ed1b2436380ab543c5",
-    "url": "/react-pizzaBuilder/static/css/5.fed6d775.chunk.css"
+    "revision": "a2b2c33c276871740915",
+    "url": "/react-pizzaBuilder/static/css/5.c86fd355.chunk.css"
   },
   {
-    "revision": "0fbb86eddb0c7d05aa4f3590460584e1",
+    "revision": "630af03ee24fba3aecba191889b1ee9f",
     "url": "/react-pizzaBuilder/index.html"
   }
 ];
