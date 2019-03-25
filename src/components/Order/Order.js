@@ -17,9 +17,9 @@ const Order = ({order, deleteOrder}) => {
       <div className={classes.Order}>
           <h2 className={classes.title}>Pizza: ${order.totalPrice}</h2>
           <p className={classes.buyer}>
-            order: name:{order.orderData.name}, 
+            order: name: {order.orderData.name}, 
             street: {order.orderData.street},  
-            phone:{order.orderData.phone}, 
+            phone: {order.orderData.phone}, 
             delivery: {order.orderData.deliveryMethod}
           </p>
 

@@ -1,17 +1,14 @@
 .PizzaControls{
     width:100%;
     max-width: 700px;
-    margin: 0 auto;
+    margin:0 auto;
     padding:20px;
     box-sizing: border-box;
     box-shadow: 0px 0px 30px 10px #e2f1ff;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    flex-wrap: wrap;
-
-    & > *{
-      margin:10px 0;
-    }
+    min-height: 260px;
 }
 
 .select {
@@ -63,3 +60,6 @@
   }
 }
 
+.gramValue{
+  margin: 0;
+}
