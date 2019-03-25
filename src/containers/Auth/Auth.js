@@ -68,7 +68,10 @@ class Auth extends Component {
         render={({
           values,
           handleChange,
-          handleSubmit
+          handleSubmit,
+          isValidating,
+          isSubmitting
+
         }) => (
           <Form onSubmit={handleSubmit} className={classes.Auth}>
             <h1 className={classes.Auth__title}>Log In</h1>
@@ -92,7 +95,7 @@ class Auth extends Component {
               onChange={handleChange}>
               Remember me</Checkbox>
             <div style={{display: 'flex'}}>
-              <Button btnType='Primary' clicked={this.signInHandle}>Sign In</Button>
+              <Button btnType='Primary' clicked={this.signInHandle} disabled={isValidating}>Sign In</Button>
               <Button btnType='Primary' clicked={this.signUpHandle}>Sign Up</Button>
             </div>
           </Form>
