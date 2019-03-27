@@ -14,5 +14,6 @@ what was used?
 - axios for rest calls, intance and Inteceptors,
 - redux for state managment, 
 - redux-thunk for async calls,
-- react-router-dom for routing
+- react-router-dom for routing,
+- used functional components with react hooks,
 - rwd
