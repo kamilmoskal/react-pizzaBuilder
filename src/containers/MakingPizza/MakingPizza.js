@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import classes from './MakingPizza.module.scss';
 import * as actions from '../../store/actions/index';
@@ -10,7 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-db';
 
-class MakingPizza extends Component {
+const MakingPizza = props => {
   /* state = {
     ingredients: {
       onion: {amount: 0, price: 0},
@@ -23,35 +23,34 @@ class MakingPizza extends Component {
       greenPepper: {amount: 0, price: 0},
     }
   } */
-  componentDidMount() {
-    this.props.onInitIngredients();
-  }
-  render() {
-    let pizza = this.props.error ? 
-    <p>Something went wrong: {this.props.error.message}</p> : <Spinner />;
-    
-    if (this.props.ingredients){
-      pizza = (
-        <React.Fragment>
-          <PizzaControls 
-            onChangeRange={this.props.onChangeIngredient}
-            ingredients={this.props.ingredients}
-            resetIng={this.props.onResetIngredients}
-            randomPizza={this.props.onRandomPizza}/>
-          <Pizza ingredients={this.props.ingredients}/>
-          <OrderSummary 
-            ingredients={this.props.ingredients}
-            startedPrice={this.props.startedPrice}
-            isAuth={this.props.isAuth}/>
-        </React.Fragment>
-      )
-    }
-    return (
-      <div className={classes.MakingPizza}>
-        {pizza}
-      </div>
+  useEffect(() => {
+    props.onInitIngredients();
+  }, []);
+ 
+  let pizza = props.error ? 
+  <p>Something went wrong: {props.error.message}</p> : <Spinner />;
+  
+  if (props.ingredients){
+    pizza = (
+      <React.Fragment>
+        <PizzaControls 
+          onChangeRange={props.onChangeIngredient}
+          ingredients={props.ingredients}
+          resetIng={props.onResetIngredients}
+          randomPizza={props.onRandomPizza}/>
+        <Pizza ingredients={props.ingredients}/>
+        <OrderSummary 
+          ingredients={props.ingredients}
+          startedPrice={props.startedPrice}
+          isAuth={props.isAuth}/>
+      </React.Fragment>
     )
   }
+  return (
+    <div className={classes.MakingPizza}>
+      {pizza}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
