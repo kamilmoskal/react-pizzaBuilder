@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
@@ -16,27 +16,28 @@ const Checkout = React.lazy(() => import('./containers/Checkout/Checkout'));
 const Orders = React.lazy(() => import('./containers/Orders/Orders'));
 const Logout = React.lazy(() => import('./containers/Auth/Logout/Logout'));
 
-const App = props => {
-  useEffect(() => {
-    props.onCheckAuthentication()
-  }, []);
-
-  return (
-    <BrowserRouter>
-      <Layout>
-        <React.Suspense fallback={<Spinner />}>
-          <Switch>
-            <Route path="/" exact component={MakingPizza} />
-            <Route path="/auth" component={Auth} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/checkout" component={Checkout} />
-            <Route path="/orders" component={Orders} />
-            <Redirect to="/" />
-          </Switch>
-        </React.Suspense>
-      </Layout>
-    </BrowserRouter>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.onCheckAuthentication()
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <Layout>
+          <React.Suspense fallback={<Spinner />}>
+            <Switch>
+              <Route path="/" exact component={MakingPizza} />
+              <Route path="/auth" component={Auth} />
+              <Route path="/logout" component={Logout} />
+              <Route path="/checkout" component={Checkout} />
+              <Route path="/orders" component={Orders} />
+              <Redirect to="/" />
+            </Switch>
+          </React.Suspense>
+        </Layout>
+      </BrowserRouter>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {
